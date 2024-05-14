@@ -9,7 +9,7 @@ public class Finish : MonoBehaviour
 	{
 		if (col.tag == "Player")
 		{
-			SceneManager.LoadScene("Level1");
+			SceneManager.LoadScene("MainMenu");
 			Debug.Log("Kena");
 		}
 	}

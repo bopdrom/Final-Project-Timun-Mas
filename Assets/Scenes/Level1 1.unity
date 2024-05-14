@@ -1703,6 +1703,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4847b84b9c5000a48bbf2480cf701276, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  wallLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  hp: 2
+  invisible: 0
 --- !u!1 &294352315
 GameObject:
   m_ObjectHideFlags: 0
@@ -5354,6 +5362,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7823e70a5c643de47aa25b4a06130721, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  wallLayer:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &892624572
 GameObject:
   m_ObjectHideFlags: 0

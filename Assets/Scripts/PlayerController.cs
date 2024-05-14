@@ -5,11 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
-	private BoxCollider2D boxCol;
-	bool gerak = false;
-	//batas = false;
+	bool gerak = false, wall = false, enemyKena = false;
 	private Vector3 posisiAwal;
 	private Vector3 posisiAkhir;
+	public LayerMask enemyLayer, wallLayer;
 
 	Rigidbody2D rb;
 
@@ -17,7 +16,6 @@ public class PlayerController : MonoBehaviour
 	{
 		PlayerPrefs.SetInt("Turn", 40);
 		rb = GetComponent<Rigidbody2D>();
-		boxCol = GetComponent<BoxCollider2D>();
 		posisiAwal = transform.position;
 		posisiAkhir = posisiAwal;
 	}
@@ -26,59 +24,47 @@ public class PlayerController : MonoBehaviour
 	{
 		if (!gerak)
 		{
-			if (Input.GetKeyDown(KeyCode.D) && Right.wallRight == false)
+			if (Input.GetKeyDown(KeyCode.D))
 			{
-				if (KenaKiri.kena)
-				{
-					gerak = false;
-				}
-				else
+				EnemyDetection(Vector2.right);
+
+				if (!wall && !enemyKena)
 				{
 					posisiAkhir = new Vector3(posisiAwal.x + 1f, transform.position.y, 0f);
 					gerak = true;
-					//boxCol.offset = new Vector2(0.30f, 0f);
 					Turn();
 				}
 			}
-			if (Input.GetKeyDown(KeyCode.A) && Left.wallLeft == false)
+			if (Input.GetKeyDown(KeyCode.A))
 			{
-				if (KenaKanan.kena)
-				{
-					gerak = false;
-				}
-				else
+				EnemyDetection(Vector2.left);
+
+				if (!wall && !enemyKena)
 				{
 					posisiAkhir = new Vector3(posisiAwal.x + -1f, transform.position.y, 0f);
 					gerak = true;
-					//boxCol.offset = new Vector2(0.30f, 0f);
 					Turn();
 				}
 			}
-			if (Input.GetKeyDown(KeyCode.W) && Top.wallTop == false)
+			if (Input.GetKeyDown(KeyCode.W))
 			{
-				if (KenaBawah.kena)
-				{
-					gerak = false;
-				}
-				else
+				EnemyDetection(Vector2.up);
+
+				if (!wall && !enemyKena)
 				{
 					posisiAkhir = new Vector3(transform.position.x, posisiAwal.y + 1f, 0f);
 					gerak = true;
-					//boxCol.offset = new Vector2(0.30f, 0f);
 					Turn();
 				}
 			}
-			if (Input.GetKeyDown(KeyCode.S) && Bottom.wallBottom == false)
+			if (Input.GetKeyDown(KeyCode.S))
 			{
-				if (KenaAtas.kena)
-				{
-					gerak = false;
-				}
-				else
+				EnemyDetection(Vector2.down);
+
+				if (!wall && !enemyKena)
 				{
 					posisiAkhir = new Vector3(transform.position.x, posisiAwal.y + -1f, 0f);
 					gerak = true;
-					//boxCol.offset = new Vector2(0.30f, 0f);
 					Turn();
 				}
 			}
@@ -96,7 +82,31 @@ public class PlayerController : MonoBehaviour
 		}
 	}
 
+	void EnemyDetection(Vector2 playerDirection)
+	{
+		RaycastHit2D hit = Physics2D.Raycast(transform.position, playerDirection, 1f, enemyLayer);
 
+		if (hit.collider != null)
+		{
+			hit.collider.GetComponent<Enemy>().Push(playerDirection);
+			enemyKena = true;
+		}
+		else
+		{
+			enemyKena = false;
+		}
+
+		RaycastHit2D hitTembok = Physics2D.Raycast(transform.position, playerDirection, 1f, wallLayer);
+
+		if (hitTembok.collider != null)
+		{
+			wall = true;
+		}
+		else
+		{
+			wall = false;
+		}
+	}
 	private void OnTriggerEnter2D(Collider2D col)
 	{
 		if (col.tag == "Enemy")
@@ -104,15 +114,6 @@ public class PlayerController : MonoBehaviour
 			Debug.Log("Kena");
 		}
 	}
-
-	/*private void OnTriggerExit2D(Collider2D col)
-	{
-		if (col.transform.CompareTag("Batas"))
-		{
-			batas = false;
-			Debug.Log(batas);
-		}
-	}*/
 
 	void Turn()
 	{
