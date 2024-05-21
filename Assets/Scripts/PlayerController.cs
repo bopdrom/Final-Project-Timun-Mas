@@ -14,13 +14,18 @@ public class PlayerController : MonoBehaviour
 
 	void Start()
 	{
-		PlayerPrefs.SetInt("Turn", 40);
+		PlayerPrefs.SetInt("Turn", 25);
 		rb = GetComponent<Rigidbody2D>();
 		posisiAwal = transform.position;
 		posisiAkhir = posisiAwal;
 	}
 
 	void Update()
+	{
+		Movement();
+	}
+
+	void Movement()
 	{
 		if (!gerak)
 		{
@@ -81,7 +86,6 @@ public class PlayerController : MonoBehaviour
 			}
 		}
 	}
-
 	void EnemyDetection(Vector2 playerDirection)
 	{
 		RaycastHit2D hit = Physics2D.Raycast(transform.position, playerDirection, 1f, enemyLayer);
@@ -105,13 +109,6 @@ public class PlayerController : MonoBehaviour
 		else
 		{
 			wall = false;
-		}
-	}
-	private void OnTriggerEnter2D(Collider2D col)
-	{
-		if (col.tag == "Enemy")
-		{
-			Debug.Log("Kena");
 		}
 	}
 

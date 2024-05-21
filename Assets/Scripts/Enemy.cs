@@ -23,7 +23,7 @@ public class Enemy : MonoBehaviour
 			if (!wall && !tabrakan)
 			{
 				transform.position = Vector3.Lerp(transform.position, posisiAkhir, Time.fixedDeltaTime * 6f);
-				Debug.Log(posisiAkhir);
+				//Debug.Log(posisiAkhir);
 				
 				if (transform.position == posisiAkhir)
 				{

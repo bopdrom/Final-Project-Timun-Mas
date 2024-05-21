@@ -5,12 +5,15 @@ using UnityEngine.SceneManagement;
 
 public class Finish : MonoBehaviour
 {
+	public LevelLoader levelLoader;
+	public int levelIndex = 1;
 	private void OnTriggerEnter2D(Collider2D col)
 	{
 		if (col.tag == "Player")
 		{
-			SceneManager.LoadScene("MainMenu");
-			Debug.Log("Kena");
+			levelLoader.LoadNextLevel(levelIndex);
+			//SceneManager.LoadScene("MainMenu");
+			Debug.Log("Finish");
 		}
 	}
 }
