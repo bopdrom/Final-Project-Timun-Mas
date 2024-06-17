@@ -6,25 +6,16 @@ using UnityEngine.SceneManagement;
 
 public class LevelLoader : MonoBehaviour
 {
-	public TextMeshProUGUI transitionText;
 	public Animator transition;
 	public int levelIndex;
 
 	public string animationText;
-	public float transitionTime = 1f;
+	public float transitionTime = 3.5f;
 
 	private void Start()
 	{
-		transitionText.text = animationText;
-	}
 
-	//private void Update()
-	//{
-	//	if (Input.GetMouseButton(0))
-	//	{
-	//		LoadNextLevel(levelIndex);
-	//	}
-	//}
+	}
 
 	public void LoadNextLevel(int level)
 	{
