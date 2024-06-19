@@ -18,12 +18,16 @@ public class PauseMenu : MonoBehaviour
 	public GameObject settingsMenuUI;
     public GameObject ornament;
 
+	LevelLoader levelLoader;
+
 	[SerializeField] private Slider masterSlider;
 	[SerializeField] private Slider musicSlider;
 	[SerializeField] private Slider SFXSlider;
 
 	private void Start()
 	{
+		levelLoader = GameObject.FindGameObjectWithTag("LevelLoader").GetComponent<LevelLoader>();
+
 		if (PlayerPrefs.HasKey("masterVolume"))
 		{
 			LoadVolume();
@@ -54,7 +58,8 @@ public class PauseMenu : MonoBehaviour
         }
 		if (Input.GetKeyDown(KeyCode.R))
 		{
-			SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+			levelLoader.LoadNextLevel(SceneManager.GetActiveScene().buildIndex);
+			//SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 		}
     }
 
@@ -135,7 +140,8 @@ public class PauseMenu : MonoBehaviour
 
 	public void Quit()
 	{
-		SceneManager.LoadScene("MainMenu");
+		levelLoader.LoadNextLevel(0);
+		//SceneManager.LoadScene("MainMenu");
 		Time.timeScale = 1f;
 	}
 }

@@ -74,6 +74,7 @@ public class PlayerController : MonoBehaviour
 				{
 					audioManager.PlaySFX(audioManager.kick);
 					kick = true;
+					Turn();
 					transform.localScale = new Vector3(0.2f, transform.localScale.y, transform.localScale.z);
 					
 				}
@@ -94,6 +95,7 @@ public class PlayerController : MonoBehaviour
 				{
 					audioManager.PlaySFX(audioManager.kick);
 					kick = true;
+					Turn();
 					transform.localScale = new Vector3(-0.2f, transform.localScale.y, transform.localScale.z);
 					
 				}
@@ -114,7 +116,8 @@ public class PlayerController : MonoBehaviour
 				{
 					audioManager.PlaySFX(audioManager.kick);
 					kick = true;
-					
+					Turn();
+
 				}
 			}
 			if (Input.GetKeyDown(KeyCode.S))
@@ -133,7 +136,8 @@ public class PlayerController : MonoBehaviour
 				{
 					audioManager.PlaySFX(audioManager.kick);
 					kick = true;
-					
+					Turn();
+
 				}
 			}
 		}
@@ -173,6 +177,21 @@ public class PlayerController : MonoBehaviour
 		}
 
 		if (stateInfo.IsName("P_Move_Down") && stateInfo.normalizedTime >= 1)
+		{
+			moveDown = false;
+		}
+
+		if (stateInfo.IsName("Ibu_Kick") && stateInfo.normalizedTime >= 1)
+		{
+			kick = false;
+		}
+
+		if (stateInfo.IsName("Ibu_Move_Up") && stateInfo.normalizedTime >= 1)
+		{
+			moveUp = false;
+		}
+
+		if (stateInfo.IsName("Ibu_Move_Down") && stateInfo.normalizedTime >= 1)
 		{
 			moveDown = false;
 		}
