@@ -10,10 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 6001470932482758276}
   - component: {fileID: 3749436897847178601}
+  - component: {fileID: 3303591998174153647}
   - component: {fileID: 6677297500698834965}
   - component: {fileID: 423291290616643520}
   - component: {fileID: 3255859346702427699}
-  - component: {fileID: 3303591998174153647}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -88,6 +88,29 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &3303591998174153647
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4585789856637099098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7823e70a5c643de47aa25b4a06130721, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movePlayer: 0
+  turn: 0
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  wallLayer:
+    serializedVersion: 2
+    m_Bits: 256
+  ornament: {fileID: 0}
+  deathScene: {fileID: 0}
+  turnText: {fileID: 0}
 --- !u!61 &6677297500698834965
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -181,21 +204,3 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &3303591998174153647
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4585789856637099098}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7823e70a5c643de47aa25b4a06130721, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemyLayer:
-    serializedVersion: 2
-    m_Bits: 128
-  wallLayer:
-    serializedVersion: 2
-    m_Bits: 256

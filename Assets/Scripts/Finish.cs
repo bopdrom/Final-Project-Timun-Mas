@@ -8,10 +8,18 @@ public class Finish : MonoBehaviour
 	public LevelLoader levelLoader;
 	public int levelIndex;
 	public bool lastLevel;
+	AudioManager audioManager;
+
+	private void Start()
+	{
+		audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+	}
+
 	private void OnTriggerEnter2D(Collider2D col)
 	{
 		if (col.tag == "Player")
 		{
+			audioManager.PlaySFX(audioManager.finish);
 			UnlockNewLevel();
 			levelLoader.LoadNextLevel(levelIndex);
 		}

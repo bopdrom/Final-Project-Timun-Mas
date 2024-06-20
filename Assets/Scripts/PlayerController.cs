@@ -15,9 +15,11 @@ public class PlayerController : MonoBehaviour
 	bool moveUp = false;
 	bool moveDown = false;
 	bool death = false;
+	bool beforeFinish = false;
 	float moveHorizontal;
 
 	//Movement
+	public bool movePlayer;
 	public int turn;
 	bool habis = false;
 	private Vector3 posisiAwal;
@@ -32,11 +34,13 @@ public class PlayerController : MonoBehaviour
 
 	//Animator
 	Animator animator;
+	Animator transition;
 	AudioManager audioManager;
 
 	private void Awake()
 	{
 		audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+		transition = GameObject.FindGameObjectWithTag("Transition").GetComponent<Animator>();
 	}
 
 	void Start()
@@ -46,17 +50,19 @@ public class PlayerController : MonoBehaviour
 		animator = GetComponent<Animator>();
 		posisiAwal = transform.position;
 		posisiAkhir = posisiAwal;
+		movePlayer = true;
 	}
 
 	void Update()
 	{
 		Movement();
 		Animation();
+		Transition();
 	}
 
 	void Movement()
 	{
-		if (!gerak && !habis)
+		if (!gerak && !habis && !movePlayer)
 		{
 			if (Input.GetKeyDown(KeyCode.D))
 			{
@@ -76,7 +82,7 @@ public class PlayerController : MonoBehaviour
 					kick = true;
 					Turn();
 					transform.localScale = new Vector3(0.2f, transform.localScale.y, transform.localScale.z);
-					
+
 				}
 			}
 			if (Input.GetKeyDown(KeyCode.A))
@@ -97,7 +103,7 @@ public class PlayerController : MonoBehaviour
 					kick = true;
 					Turn();
 					transform.localScale = new Vector3(-0.2f, transform.localScale.y, transform.localScale.z);
-					
+
 				}
 			}
 			if (Input.GetKeyDown(KeyCode.W))
@@ -157,7 +163,7 @@ public class PlayerController : MonoBehaviour
 	void Animation()
 	{
 		moveHorizontal = Mathf.Abs(transform.position.x - posisiAkhir.x);
-		
+
 		animator.SetFloat("Move_Horizontal", moveHorizontal);
 		animator.SetBool("Move_Up", moveUp);
 		animator.SetBool("Move_Down", moveDown);
@@ -223,6 +229,16 @@ public class PlayerController : MonoBehaviour
 		}
 	}
 
+	void Transition()
+	{
+		AnimatorStateInfo stateInfo2 = transition.GetCurrentAnimatorStateInfo(0);
+
+		if (stateInfo2.normalizedTime >= 1.0f)
+		{
+			movePlayer = false;
+		}
+	}
+
 	void Turn()
 	{
 		turn = PlayerPrefs.GetInt("Turn");
@@ -232,16 +248,30 @@ public class PlayerController : MonoBehaviour
 		print(turn);
 		turnText.text = turn.ToString();
 
-		if (turn < 1)
+		if (!beforeFinish)
 		{
-			death = true;
-			audioManager.PlaySFX(audioManager.defeat);
-			habis = true;
-			StartCoroutine(OnDeath());
+			if (turn < 1)
+			{
+				death = true;
+				audioManager.PlaySFX(audioManager.defeat);
+				habis = true;
+				StartCoroutine(OnDeath());
+			}
+			else
+			{
+				habis = false;
+			}
 		}
 		else
 		{
-			habis = false;
+			if (turn < 1)
+			{
+				habis = true;
+			}
+			else
+			{
+				habis = false;
+			}
 		}
 	}
 
@@ -249,5 +279,26 @@ public class PlayerController : MonoBehaviour
 	{
 		yield return new WaitForSeconds(2f);
 		deathScene.SetActive(true);
+	}
+
+	private void OnTriggerEnter2D(Collider2D collision)
+	{
+		if (collision.tag == "BeforeFinish")
+		{
+			beforeFinish = true;
+		}
+
+		if (collision.tag == "Finish")
+		{
+			habis = true;
+		}
+	}
+
+	private void OnTriggerExit2D(Collider2D collision)
+	{
+		if (collision.tag == "BeforeFinish")
+		{
+			beforeFinish = false;
+		}
 	}
 }

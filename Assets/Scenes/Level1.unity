@@ -1485,6 +1485,63 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1001 &550420173
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4299092604748350133, guid: e922d64d7ccca0541879cd604620272f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4299092604748350133, guid: e922d64d7ccca0541879cd604620272f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4299092604748350133, guid: e922d64d7ccca0541879cd604620272f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4299092604748350133, guid: e922d64d7ccca0541879cd604620272f, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4299092604748350133, guid: e922d64d7ccca0541879cd604620272f, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4299092604748350133, guid: e922d64d7ccca0541879cd604620272f, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4299092604748350133, guid: e922d64d7ccca0541879cd604620272f, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4299092604748350133, guid: e922d64d7ccca0541879cd604620272f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4299092604748350133, guid: e922d64d7ccca0541879cd604620272f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4299092604748350133, guid: e922d64d7ccca0541879cd604620272f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6685163607526713160, guid: e922d64d7ccca0541879cd604620272f, type: 3}
+      propertyPath: m_Name
+      value: BeforeFinish
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e922d64d7ccca0541879cd604620272f, type: 3}
 --- !u!1 &559391991
 GameObject:
   m_ObjectHideFlags: 0
@@ -2809,6 +2866,10 @@ PrefabInstance:
     - target: {fileID: 3230088619982399435, guid: 438fb17e20cccd546b1f6d3d110fb1b2, type: 3}
       propertyPath: animationText
       value: Timun Mas dan Benih Ajaib
+      objectReference: {fileID: 0}
+    - target: {fileID: 4288405806315446869, guid: 438fb17e20cccd546b1f6d3d110fb1b2, type: 3}
+      propertyPath: m_TagString
+      value: Transition
       objectReference: {fileID: 0}
     - target: {fileID: 5058050325113055883, guid: 438fb17e20cccd546b1f6d3d110fb1b2, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4753,7 +4814,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7031329121949879379, guid: a552e083d32581d429bd57620d9dbf26, type: 3}
       propertyPath: levelIndex
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 7031329121949879379, guid: a552e083d32581d429bd57620d9dbf26, type: 3}
       propertyPath: levelLoader
@@ -7826,5 +7887,6 @@ SceneRoots:
   - {fileID: 2095466357}
   - {fileID: 1872155774}
   - {fileID: 1529561061}
+  - {fileID: 550420173}
   - {fileID: 1324237451}
   - {fileID: 1797070294}
